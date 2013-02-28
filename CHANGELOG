@@ -1,0 +1,12 @@
+l10nTag 1.0
+===========================================
+ - Small bugfixes;
+ - Optimization of getTagEnd operation;
+ - Added license information;
+ - Added changelog;
+ - Now plugin fires only on onWebPagePrerender and onBeforeCacheIpdate, 
+   which makes it run only twice and keep correct version in cache;
+
+l10nTag 0.1-alpha
+===========================================
+ - Initial build
