@@ -33,12 +33,27 @@ $plugin->set('id', 1);
 $plugin->set('name', 'l10nTag');
 $plugin->set('description', 'Adds support for multilingual tags in any field and templates');
 $plugin->set('plugincode', file_get_contents($sources['componentCore'].'/elements/plugin.l10ntag.php'));
+$modx->log(modX::LOG_LEVEL_INFO,'Plugin added successfully!');
+
+$PluginEvents = array();
 
 $pluginEvent = $modx->newObject('modPluginEvent');
-$pluginEvent->set('event', 'OnParseDocument');
+$pluginEvent->set('event', 'OnWebPagePrerender');
+$PluginEvents[] = $pluginEvent;
+$modx->log(modX::LOG_LEVEL_INFO,'Adding onWebPagePrerender event...');
 
-$plugin->addMany($pluginEvent);
 
+$pluginEvent = $modx->newObject('modPluginEvent');
+$pluginEvent->set('event', 'OnBeforeCacheUpdate');
+$PluginEvents[] = $pluginEvent;
+$modx->log(modX::LOG_LEVEL_INFO,'Adding onBeforeCacheUpdate event...');
+
+$resultAddEvents = $plugin->addMany($pluginEvents);
+if(!$resultAddEvents){
+	$modx->log(modX::LOG_LEVEL_INFO,'Events registered successfully');
+} else {
+	$modx->log(modX::LOG_LEVEL_INFO,'Error adding events to the extra!');
+}
 /* Go on wheels! */
 $vehicle = $builder->createVehicle($plugin, array(
    xPDOTransport::UNIQUE_KEY => 'name',
@@ -68,5 +83,6 @@ $builder->setPackageAttributes(array(
 
 $builder->pack();
 exit();
+$modx->log(modX::LOG_LEVEL_INFO,'Build successfull!');
 // Done!
 ?>
