@@ -24,14 +24,14 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 /* Load utility classes */
 $modx->loadClass('transport.modPackageBuilder', '', false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('l10nTag', '0.1', 'alpha');
+$builder->createPackage('l10nTag', '1.0', 'pl');
 $builder->registerNamespace('l10nTag', false, true, '{core_path}components/l10nTag/');
 
 /* Objects */
 $plugin = $modx->newObject('modPlugin');
 $plugin->set('id', 1);
 $plugin->set('name', 'l10nTag');
-$plugin->set('description', 'Adds support for multilingual strings in any field');
+$plugin->set('description', 'Adds support for multilingual tags in any field and templates');
 $plugin->set('plugincode', file_get_contents($sources['componentCore'].'/elements/plugin.l10ntag.php'));
 
 $pluginEvent = $modx->newObject('modPluginEvent');
@@ -62,9 +62,11 @@ $builder->putVehicle($vehicle);
 
 /* Package metadata etc */
 $builder->setPackageAttributes(array(
-	 'license' => 'This package is licensed under the GNU GPL version 2',
-	 'readme' => file_get_contents(dirname(dirname(__FILE__)) . '/README')));
+	'license' 	=> file_get_contents(dirname(dirname(__FILE__)) . '/LICENSE'),
+	'changelog'	=> file_get_contents(dirname(dirname(__FILE__)) . '/CHANGELOG'),
+	'readme' 	=> file_get_contents(dirname(dirname(__FILE__)) . '/README')));
 
 $builder->pack();
-
+exit();
 // Done!
+?>
