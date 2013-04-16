@@ -3,11 +3,5 @@
 
 if (!($babelparser instanceof BabelParser)) return;
 
-//$output = $babelparser->parseString($modx->documentOutput);
 $output = &$modx->resource->_output;
 $output = $babelparser->parseString($output);
-
-//$modx->log(modX::LOG_LEVEL_DEBUG, '[l10nTag] input = ' . $content);
-//$modx->log(modX::LOG_LEVEL_DEBUG, '[l10nTag] output = ' . $output);
-
-//$modx->documentOutput = $result;

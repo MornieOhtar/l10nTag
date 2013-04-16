@@ -1,6 +1,7 @@
-l10nTag 1.0.1
+l10nTag 1.1
 ===========================================
- - Bug fix, when plugin wasn't working with gallery plugin
+ - Bug fix, when plugin wasn't working with gallery plugin;
+ - Now culture key tag can be of any length, not only 2 symbols;
 l10nTag 1.0
 ===========================================
  - Small bugfixes;
