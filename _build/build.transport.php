@@ -24,7 +24,7 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 /* Load utility classes */
 $modx->loadClass('transport.modPackageBuilder', '', false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('l10nTag', '1.0.1', 'pl');
+$builder->createPackage('l10nTag', '1.1', 'pl');
 $builder->registerNamespace('l10nTag', false, true, '{core_path}components/l10nTag/');
 
 /* Objects */
