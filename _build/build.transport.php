@@ -24,7 +24,7 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 /* Load utility classes */
 $modx->loadClass('transport.modPackageBuilder', '', false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('l10nTag', '1.0', 'pl');
+$builder->createPackage('l10nTag', '1.0.1', 'pl');
 $builder->registerNamespace('l10nTag', false, true, '{core_path}components/l10nTag/');
 
 /* Objects */
@@ -35,20 +35,11 @@ $plugin->set('description', 'Adds support for multilingual tags in any field and
 $plugin->set('plugincode', file_get_contents($sources['componentCore'].'/elements/plugin.l10ntag.php'));
 $modx->log(modX::LOG_LEVEL_INFO,'Plugin added successfully!');
 
-$PluginEvents = array();
-
 $pluginEvent = $modx->newObject('modPluginEvent');
 $pluginEvent->set('event', 'OnWebPagePrerender');
-$PluginEvents[] = $pluginEvent;
 $modx->log(modX::LOG_LEVEL_INFO,'Adding onWebPagePrerender event...');
 
-
-$pluginEvent = $modx->newObject('modPluginEvent');
-$pluginEvent->set('event', 'OnBeforeCacheUpdate');
-$PluginEvents[] = $pluginEvent;
-$modx->log(modX::LOG_LEVEL_INFO,'Adding onBeforeCacheUpdate event...');
-
-$resultAddEvents = $plugin->addMany($pluginEvents);
+$resultAddEvents = $plugin->addMany($pluginEvent);
 if(!$resultAddEvents){
 	$modx->log(modX::LOG_LEVEL_INFO,'Events registered successfully');
 } else {
