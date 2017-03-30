@@ -43,7 +43,7 @@ class BabelParser {
 		$tagCulture = substr($tag,$this->tagStartLen,strpos($tag, " ")-$this->tagStartLen);
 		$cultureLen = strlen($tagCulture);
 		if($tagCulture == $this->cultureKey){
-			return substr($tag,$this->tagStartLen + $cultureLen,strlen($tag)-$this->tagStartLen - $this->tagEndLen-$cultureLen);
+			return trim(substr($tag,$this->tagStartLen + $cultureLen,strlen($tag)-$this->tagStartLen - $this->tagEndLen-$cultureLen));
 		}
 		else{
 			return "";
